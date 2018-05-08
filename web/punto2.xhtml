@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>PUNTO 02</title>
+    </h:head>
+    <h:body>
+        <p:panel id="panelAutos" header="BUSQUEDA DE AUTOS POR COLOR">
+            <p:growl id="mensajes"/>
+            <h:form id="formBusqueda">
+                <p:panelGrid columns="5" styleClass="ui-noborder" >            
+                    <p:outputLabel value="Ingrese color" for="inColor"/>
+                    <p:inputText id="inColor" value="#{punto2FormBean.colorIngresado}" required="true">
+                        <f:validateLength maximum="15"/>
+                    </p:inputText>
+                    <p:commandButton value="BUSCAR" actionListener="#{punto2FormBean.buscarColores()}" update="panelAutos :formListado" />                    
+                </p:panelGrid>
+            </h:form>
+            <h:form><p:commandButton value="REINICIAR LISTA" actionListener="#{punto2FormBean.reiniciarLista()}" update="panelAutos :formListado"/>
+                    <p:commandButton value="VOLVER AL MENU PRINCIPAL" action="index"/>
+            </h:form>
+            <h:form id="formListado">
+                <p:dataTable id="tableAutos" value="#{punto2FormBean.listaAutos}" var="auto">
+                    <p:column headerText="Automóvil">
+                        <p:outputLabel value="#{auto.patente} (#{auto.tipo})"/>
+                    </p:column>
+                    <p:column headerText="Cant. de Puertas">
+                        <p:outputLabel value="#{auto.puertas}"/>
+                    </p:column> 
+                    <p:column headerText="Color">
+                        <p:outputLabel value="#{auto.color}"/>
+                    </p:column> 
+                    <p:column headerText="Dueño">
+                        <p:outputLabel value="#{auto.conductor.apellido}, #{auto.conductor.nombre} (#{auto.conductor.edad} años)"/>
+                    </p:column> 
+                    <p:column headerText="Nacimiento Dueño">
+                        <p:outputLabel value="#{auto.conductor.fechaNacimiento}">
+                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </p:outputLabel>
+                    </p:column> 
+                </p:dataTable>
+            </h:form>
+        </p:panel>
+    </h:body>
+</html>
+

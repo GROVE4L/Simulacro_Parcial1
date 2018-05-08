@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>PUNTO 01</title>
+    </h:head>
+    <h:body>
+        <p:panel id="panelUno" header="SUMAR">
+            <p:growl id="mensajes" />                
+            <h:form>
+                <p:panelGrid id="panelGridUno" columns="2" styleClass="ui-noborder">
+                    <p:outputLabel value="Numero 1" for="inputN1"/>
+                    <p:inputNumber id="inputN1" value="#{punto1FormBean.n1Ingresado}" required="true" 
+                                   decimalPlaces="0">
+                        <f:validateLongRange minimum="0" maximum="100"/>
+                    </p:inputNumber>
+                    <p:outputLabel value="Numero 2" for="inputN2"/>
+                    <p:inputNumber id="inputN2" value="#{punto1FormBean.n2Ingresado}" required="true" 
+                                   decimalPlaces="0">
+                        <f:validateLongRange minimum="0" maximum="100"/>
+                    </p:inputNumber>
+                    <p:commandButton value="SUMAR" update="panelUno" />
+                    <p:outputLabel id="lblSuma" value="Resultado: #{punto1FormBean.sumarNumeros()}" />
+                </p:panelGrid>                
+            </h:form>
+            <h:form>
+                <p:commandButton value="VOLVER AL MENU" action="index"/>
+            </h:form>
+        </p:panel>
+    </h:body>
+</html>
+
