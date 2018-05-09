@@ -30,6 +30,7 @@ public class ValidarOpcionFormBean {
             case 1: return "punto1";
             case 2: return "punto2";
             case 3: return "punto3";
+            case 4: return "punto4";
             default: return "null"; 
         }
     }
